@@ -1,0 +1,1 @@
+/home/lucasmp/.spf13-vim-3/.vimrc
