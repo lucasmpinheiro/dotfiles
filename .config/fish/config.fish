@@ -1,3 +1,6 @@
+# Remove fish greeting.
+set fish_greeting ''
+
 # Setup JAVA home.
 set JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
