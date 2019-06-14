@@ -6,8 +6,9 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
+-- Widget and layout libraries.
 local wibox = require("wibox")
+local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -108,6 +109,23 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
+
+-- Battery widget.
+local mybattery = lain.widget.bat {
+    settings = function()
+        if bat_now.status == nil or bat_now.status == "N/A" then
+            widget:set_markup()
+            return
+        end
+
+        if bat_now.ac_status == 1 then
+            widget:set_markup(" AC ")
+            return
+        end
+
+        widget:set_markup(" " .. bat_now.perc .. "% ")
+    end
+}
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -218,6 +236,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            mybattery.widget,
             s.mylayoutbox,
         },
     }
