@@ -91,18 +91,23 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
+
+lockscreen = function()
+    awful.util.spawn("slock")
+end
+
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-    {"hotkeys", function()
+    {"Hotkeys", function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end},
-    {"manual", terminal .. " -e man awesome"},
-    {"edit config", editor_cmd .. " " .. awesome.conffile},
-    {"restart", awesome.restart},
-    {"quit", function()
+    {"Manual", terminal .. " -e man awesome"},
+    {"Edit config", editor_cmd .. " " .. awesome.conffile},
+    {"Reload", awesome.restart},
+    {"Logout", function()
             awesome.quit()
         end}
 }
@@ -111,8 +116,9 @@ mymainmenu =
     awful.menu(
     {
         items = {
+            {"Lock", lockscreen},
             {"awesome", myawesomemenu, beautiful.awesome_icon},
-            {"open terminal", terminal}
+            {"Open terminal", terminal}
         }
     }
 )
@@ -238,9 +244,9 @@ awful.screen.connect_for_each_screen(
         set_wallpaper(s)
 
         -- Each screen has its own tag table.
-        local names = { "main", "www", "</>", "run", "msg", "music" }
-        local l = awful.layout.suit  -- Just to save some typing: use an alias.
-        local layouts = { l.tile, l.tile, l.max, l.tile, l.max, l.max }
+        local names = {"main", "www", "</>", "run", "msg", "music"}
+        local l = awful.layout.suit -- Just to save some typing: use an alias.
+        local layouts = {l.tile, l.tile, l.max, l.tile, l.max, l.max}
         awful.tag(names, s, layouts)
 
         -- Create a promptbox for each screen
@@ -426,6 +432,7 @@ globalkeys =
     ),
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
+    awful.key({modkey, "Shift"}, "Escape", lockscreen, {description = "lock the screen", group = "awesome"}),
     awful.key(
         {modkey},
         "l",

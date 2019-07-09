@@ -38,6 +38,7 @@
 *.color15: #fdf6e3
 
 !! URxvt Appearance
+URxvt.background: [93]#141c21
 URxvt.font: xft:RobotoMono Nerd Font:style=Regular:size=12
 URxvt.boldFont: xft:RobotoMono Nerd Font:style=Bold:size=12
 URxvt.italicFont: xft:RobotoMono Nerd Font:style=Italic:size=12
@@ -45,14 +46,17 @@ URxvt.boldItalicfont: xft:RobotoMono Nerd Font:style=Bold Italic:size=12
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
-URxvt.internalBorder: 12
+URxvt*borderColor: #222222
+URxvt*externalBorder: 0
+URxvt*internalBorder: 6
+URxvt*borderLess: false
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
-URxvt.depth: 24
+URxvt.depth: 32
 URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
