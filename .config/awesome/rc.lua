@@ -14,7 +14,8 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
+-- local menubar = require("menubar")
+local freedesktop = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -115,11 +116,14 @@ myawesomemenu = {
 }
 
 mymainmenu =
-    awful.menu(
+    freedesktop.menu.build(
     {
-        items = {
-            {"Lock", lockscreen},
-            {"awesome", myawesomemenu, beautiful.awesome_icon},
+        icon_size = beautiful.menu_height or dpi(16),
+        before = {
+            {"Awesome", myawesomemenu, beautiful.awesome_icon},
+            {"Lock", lockscreen}
+        },
+        after = {
             {"Open terminal", terminal}
         }
     }
@@ -134,7 +138,7 @@ mylauncher =
 )
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
