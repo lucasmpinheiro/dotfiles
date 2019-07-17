@@ -539,9 +539,9 @@ globalkeys =
         {modkey},
         "r",
         function()
-            awful.screen.focused().mypromptbox:run()
+            awful.spawn("rofi -modi drun,window,run,ssh -show drun")
         end,
-        {description = "run prompt", group = "launcher"}
+        {description = "run application (rofi)", group = "launcher"}
     ),
     awful.key(
         {modkey},
