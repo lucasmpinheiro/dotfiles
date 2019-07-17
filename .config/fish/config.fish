@@ -2,7 +2,7 @@
 set fish_greeting ''
 
 # Setup JAVA home.
-set JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+set JAVA_HOME $HOME/.sdkman/candidates/java/current
 
 # Setup powerline.
 set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"
