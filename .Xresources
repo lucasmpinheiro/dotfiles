@@ -39,10 +39,10 @@
 
 !! URxvt Appearance
 URxvt.background: [93]#141c21
-URxvt.font: xft:RobotoMono Nerd Font:style=Regular:size=12
-URxvt.boldFont: xft:RobotoMono Nerd Font:style=Bold:size=12
-URxvt.italicFont: xft:RobotoMono Nerd Font:style=Italic:size=12
-URxvt.boldItalicfont: xft:RobotoMono Nerd Font:style=Bold Italic:size=12
+URxvt.font: xft:Hack Nerd Font Mono:style=Regular:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:Hack Nerd Font Mono:style=Bold:pixelsize=16:antialias=true:hinting=true
+URxvt.italicFont: xft:Hack Nerd Font Mono:style=Italic:pixelsize=16:antialias=true:hinting=true
+URxvt.boldItalicfont: xft:Hack Nerd Font Mono:style=Bold Italic:pixelsize=16:antialias=true:hinting=true
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
