@@ -121,6 +121,8 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
+reverse-scroll = false
+
 pin-workspaces = true
 
 label-focused = %index%
