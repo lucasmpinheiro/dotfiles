@@ -50,9 +50,11 @@ padding-right = 4
 module-margin-left = 0
 module-margin-right = 3
 
-font-0 = fixed:pixelsize=10;1
+font-0 = Ubuntu Nerd Font:style=Bold:size=10:antialias=true;2
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-2 = "MaterialIcons:size=10:antialias=false;5"
+font-3 = "icomoon-extended-ultra:size=10:antialias=false;5"
+font-4 = FontAwesome:size=10;5
 
 wm-restack = bspwm
 ;wm-restack = i3
