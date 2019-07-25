@@ -46,7 +46,7 @@ URxvt.boldItalicfont: xft:Hack Nerd Font Mono:style=Bold Italic:pixelsize=16:ant
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
-URxvt*borderColor: #222222
+URxvt*borderColor: [93]#141c21
 URxvt*externalBorder: 0
 URxvt*internalBorder: 6
 URxvt*borderLess: false
