@@ -72,11 +72,11 @@ cursor-scroll = ns-resize
 inherit = bar/base
 monitor = ${env:MONITOR:eDP-1-1}
 
-modules-left = bspwm 
-modules-center = 
-modules-right = xkeyboard xbacklight pulseaudio wlan eth battery date powermenu
+modules-left =
+modules-center = bspwm
+modules-right = xkeyboard xbacklight pulseaudio battery date powermenu
 
-tray-position = right
+tray-position = left
 tray-padding = 2
 ;tray-background = #0063ff
 
@@ -85,7 +85,8 @@ inherit = bar/base
 bottom = false
 monitor = ${env:MONITOR:HDMI-1}
 
-modules-left = bspwm
+modules-left =
+modules-center = bspwm
 modules-right = date powermenu
 
 [module/xwindow]
