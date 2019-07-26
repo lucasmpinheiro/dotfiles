@@ -27,3 +27,14 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
+# Autostart applications.
+compton &
+setxkbmap -layout br,us &
+light-locker --lock-on-suspend &
+nitrogen --restore &
+nm-applet &
+pamac-tray &
+xfce4-clipman &
+slack &
+thunderbird &
+
