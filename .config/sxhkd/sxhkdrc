@@ -42,6 +42,14 @@ super + y
 super + g
 	bspc node -s biggest
 
+# Rotate selected nodes clockwise.
+super + r
+    bspc node -R 90
+
+# Rotate selected nodes counter-clockwise.
+super + R
+    bspc node -R -90
+
 #
 # state/flags
 #
