@@ -39,6 +39,7 @@
 
 !! URxvt Appearance
 URxvt.background: [93]#141c21
+*.font: Hack Nerd Font Mono:style=Regular:pixelsize=14:antialias=true:hinting=true
 URxvt.font: xft:Hack Nerd Font Mono:style=Regular:pixelsize=16:antialias=true:hinting=true
 URxvt.boldFont: xft:Hack Nerd Font Mono:style=Bold:pixelsize=16:antialias=true:hinting=true
 URxvt.italicFont: xft:Hack Nerd Font Mono:style=Italic:pixelsize=16:antialias=true:hinting=true
