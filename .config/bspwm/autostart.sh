@@ -12,7 +12,7 @@ compton &
 setxkbmap -layout br,us &
 light-locker --lock-on-suspend &
 nitrogen --restore &
-# redshift &
+redshift-gtk &
 run nm-applet &
 run pamac-tray &
 run xfce4-clipman &
