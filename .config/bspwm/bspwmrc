@@ -7,12 +7,11 @@ if [ -x /usr/local/bin/dual_monitor_setup ];then
     dual_monitor_setup
 fi
 
-sxhkd &
-
-$HOME/.config/polybar/launch.sh
-
 bspc monitor eDP-1-1 -d 1 2 3 4 5
 bspc monitor HDMI-1 -d 6 7 8 9 0
+
+# Launch applications.
+$HOME/.config/bspwm/autostart.sh
 
 # BSPWM configuration.
 bspc config border_width         2
@@ -38,15 +37,4 @@ bspc config merge_overlapping_monitors true
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-
-# Autostart applications.
-compton &
-setxkbmap -layout br,us &
-light-locker --lock-on-suspend &
-nitrogen --restore &
-nm-applet &
-pamac-tray &
-xfce4-clipman &
-slack &
-thunderbird &
 
