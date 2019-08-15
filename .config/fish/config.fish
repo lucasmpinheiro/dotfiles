@@ -15,6 +15,13 @@ set JAVA_HOME $HOME/.sdkman/candidates/java/current
 set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"
 powerline-setup
 
+# Activate default RVM ruby.
+set PATH $PATH:$HOME/.rvm/bin
+rvm default
+
+# Setup NVM to work on fish.
+nvm --version > /dev/null
+
 # Setup SDKMan.
 #source "$HOME/.sdkman/bin/sdkman-init.sh"
 
