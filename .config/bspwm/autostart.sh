@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Autostart applications.
+# Ensure sxhkd uses sh (faster).
+export SXHKD_SHELL=sh
 
+# Autostart applications.
 sxhkd &
 
 $HOME/.config/polybar/launch.sh
