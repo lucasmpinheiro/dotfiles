@@ -1,6 +1,13 @@
 # Remove fish greeting.
 set fish_greeting ''
 
+# Setup default editor.
+set VISUAL vim
+set EDITOR $VISUAL
+
+# Setup keychain.
+eval (keychain --eval --quiet)
+
 # Setup JAVA home.
 set JAVA_HOME $HOME/.sdkman/candidates/java/current
 
