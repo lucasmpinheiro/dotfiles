@@ -1,4 +1,6 @@
-#! /bin/sh
+#!/bin/sh
+
+# Monitor setup.
 
 # run the xrandr command if an external monitor is connected to the
 # laptop.  This must be executed before the polybar command, so that
@@ -7,8 +9,18 @@ if [ -x /usr/local/bin/dual_monitor_setup ];then
     dual_monitor_setup
 fi
 
-bspc monitor eDP-1-1 -d 1 2 3 4 5
-bspc monitor HDMI-1 -d 6 7 8 9 0
+# bspc monitor eDP-1-1 -d 1 2 3 4 5
+# bspc monitor HDMI-1 -d 6 7 8 9 0
+
+monitors=$(xrandr -q | grep " connected " | awk '{ print$1 }')
+monitors=($monitors)
+
+if [[ ${#monitors[@]} == 1 ]]; then
+    bspc monitor ${monitors[0]} -d 1 2 3 4 5 6 7 8 9 10
+else
+    bspc monitor ${monitors[1]} -d 1 2 3 4 5
+    bspc monitor ${monitors[0]} -d 6 7 8 9 10
+fi
 
 # Launch applications.
 $HOME/.config/bspwm/autostart.sh
