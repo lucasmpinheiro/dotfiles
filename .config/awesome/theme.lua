@@ -8,11 +8,11 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
-theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
+-- theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles
-theme.font = "sans 8"
+theme.font = "Ubuntu Nerd Font 12"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
@@ -67,7 +67,7 @@ theme.mouse_finder_color = "#CC9393"
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = dpi(15)
+theme.menu_height = dpi(20)
 theme.menu_width = dpi(100)
 -- }}}
 
