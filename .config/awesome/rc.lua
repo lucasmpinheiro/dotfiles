@@ -15,6 +15,8 @@ local lain = require("lain")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+-- Display management library.
+local xrandr = require("xrandr")
 -- local menubar = require("menubar")
 local freedesktop = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -64,8 +66,11 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
 
--- This is used later as the default terminal and editor to run.
-terminal = "urxvt"
+-- Setup default terminal, shell and editor.
+terminal = "st"
+
+awful.util.shell = "bash"
+
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -97,7 +102,7 @@ awful.layout.layouts = {
 }
 
 lockscreen = function()
-    awful.util.spawn("slock")
+    awful.util.spawn("dm-tool lock")
 end
 
 -- }}}
@@ -147,20 +152,67 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Battery widget.
 local mybattery = lain.widget.bat {
+    timeout = 5,
     settings = function()
         if bat_now.status == nil or bat_now.status == "N/A" then
             widget:set_markup()
             return
         end
 
+        local baticon = "  "
+        local blevel = tonumber(bat_now.perc)
+
         if bat_now.ac_status == 1 then
-            widget:set_markup(" AC ")
-            return
+            baticon = " "
+        elseif blevel <= 5 then
+            baticon = "  "
+        elseif blevel <= 25 then
+            baticon = "  "
+        elseif blevel <=50 then
+            baticon = "  "
+        elseif blevel <= 75 then
+            baticon = "  "
         end
 
-        widget:set_markup(" " .. bat_now.perc .. "% ")
+        widget:set_markup(" " .. baticon .. bat_now.perc .. "% ")
     end
 }
+
+-- Volume widget.
+local volume = lain.widget.pulse {
+    settings = function()
+        local volicon = " ";
+        local vlevel = tonumber(volume_now.left)
+
+        if volume_now.muted == "yes" or vlevel == nil then
+            volicon = "ﱝ "
+        elseif vlevel == 0 then
+            volicon = " "
+        elseif vlevel < 50 then
+            volicon = " "
+        end
+
+        widget:set_markup(" " .. volicon .. vlevel .. "% ")
+    end
+}
+
+volume.widget:buttons(awful.util.table.join(
+    awful.button({}, 1, function() -- left click
+        awful.spawn("pavucontrol")
+    end),
+    awful.button({}, 3, function() -- right click
+        os.execute(string.format("pactl set-sink-volume %s toggle", volume.device))
+        volume.update()
+    end),
+    awful.button({}, 4, function() -- scroll up
+        os.execute(string.format("pactl set-sink-volume %s +5%%", volume.device))
+        volume.update()
+    end),
+    awful.button({}, 5, function() -- scroll down
+        os.execute(string.format("pactl set-sink-volume %s -5%%", volume.device))
+        volume.update()
+    end)
+))
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -264,11 +316,15 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(
     function(s)
+        -- Displays and wallpaper.
+        awful.spawn.with_shell("autorandr --change")
+        awful.spawn.with_shell("nitrogen --restore")
+
         -- Wallpaper
-        set_wallpaper(s)
+        -- set_wallpaper(s)
 
         -- Each screen has its own tag table.
-        local names = {"main", "www", "</>", "run", "msg", "music"}
+        local names = {"1.", "2.", "3.", "4.", "5.", "6."}
         local l = awful.layout.suit -- Just to save some typing: use an alias.
         local layouts = {l.tile, l.tile, l.max, l.tile, l.max, l.max}
         awful.tag(names, s, layouts)
@@ -343,8 +399,9 @@ awful.screen.connect_for_each_screen(
             {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                mykeyboardlayout,
                 wibox.widget.systray(),
+                mykeyboardlayout,
+                volume,
                 mybattery,
                 mytextclock,
                 s.mylayoutbox
@@ -393,14 +450,14 @@ globalkeys =
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key(
-        {modkey},
-        "w",
-        function()
-            mymainmenu:show()
-        end,
-        {description = "show main menu", group = "awesome"}
-    ),
+    --awful.key(
+    --    {modkey},
+    --    "w",
+    --    function()
+    --        mymainmenu:show()
+    --    end,
+    --    {description = "show main menu", group = "awesome"}
+    --),
     -- Layout manipulation
     awful.key(
         {modkey, "Shift"},
@@ -457,7 +514,7 @@ globalkeys =
     ),
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
-    awful.key({modkey, "Shift"}, "Escape", lockscreen, {description = "lock the screen", group = "awesome"}),
+    awful.key({"Mod1", "Control"}, "l", lockscreen, {description = "lock the screen", group = "awesome"}),
     awful.key(
         {modkey},
         "l",
@@ -564,6 +621,14 @@ globalkeys =
             menubar.show()
         end,
         {description = "show the menubar", group = "launcher"}
+    ),
+    awful.key(
+        {modkey, "Shift"},
+        "d",
+        function()
+            xrandr.xrandr()
+        end,
+        {description = "swap display arrangement", group = "awesome"}
     )
 )
 
@@ -579,8 +644,8 @@ clientkeys =
         {description = "toggle fullscreen", group = "client"}
     ),
     awful.key(
-        {modkey, "Shift"},
-        "c",
+        {modkey},
+        "w",
         function(c)
             c:kill()
         end,
@@ -800,12 +865,12 @@ awful.rules.rules = {
         },
         properties = {floating = true}
     },
-    -- Add titlebars to normal clients and dialogs
+    -- Do not add titlebars to normal clients and dialogs
     {
         rule_any = {
             type = {"normal", "dialog"}
         },
-        properties = {titlebars_enabled = true}
+        properties = {titlebars_enabled = false}
     }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -907,3 +972,25 @@ client.connect_signal(
     end
 )
 -- }}}
+
+-- Autorun programs.
+-- awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
+autorun = true
+autorunApps =
+{
+    -- "compton",
+    -- "nitrogen --restore",
+    "eval $(ssh-agent)",
+    "nm-applet",
+    "xfce4-clipman",
+    "blueberry-tray",
+    "slack",
+    "mailspring",
+}
+
+if autorun then
+    for app = 1, #autorunApps do
+        awful.spawn.once(autorunApps[app])
+    end
+end
