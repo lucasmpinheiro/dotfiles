@@ -24,8 +24,9 @@ theme.bg_urgent = "#3F3F3F"
 theme.bg_systray = theme.bg_normal
 -- }}}
 
--- {{{ Borders
-theme.useless_gap = dpi(0)
+-- {{{ Borders and gaps
+theme.useless_gap = dpi(5)
+theme.gap_single_client = false
 theme.border_width = dpi(2)
 theme.border_normal = "#3F3F3F"
 theme.border_focus = "#6F6F6F"
