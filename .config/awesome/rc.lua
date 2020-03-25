@@ -218,6 +218,13 @@ volume.widget:buttons(awful.util.table.join(
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+-- Attach a calendar notification to the clock widget.
+local mycal = lain.widget.cal {
+    attach_to = { mytextclock },
+    week_start = 1,
+    followtag = true,
+}
+
 -- Create a wibox for each screen and add it
 local taglist_buttons =
     gears.table.join(
