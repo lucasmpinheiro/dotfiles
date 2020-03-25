@@ -331,9 +331,9 @@ awful.screen.connect_for_each_screen(
         -- set_wallpaper(s)
 
         -- Each screen has its own tag table.
-        local names = {"1.", "2.", "3.", "4.", "5.", "6."}
+        local names = {"1.", "2.", "3.", "4.", "5."}
         local l = awful.layout.suit -- Just to save some typing: use an alias.
-        local layouts = {l.tile, l.tile, l.max, l.tile, l.max, l.max}
+        local layouts = {l.max, l.tile, l.tile, l.tile, l.tile}
         awful.tag(names, s, layouts)
 
         -- Create a promptbox for each screen
