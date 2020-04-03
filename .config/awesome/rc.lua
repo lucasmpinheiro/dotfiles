@@ -328,6 +328,29 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local tags = {
+    {
+        name = "1.",
+        layout = awful.layout.suit.max,
+    },
+    {
+        name = "2.",
+        layout = awful.layout.suit.tile,
+    },
+    {
+        name = "3.",
+        layout = awful.layout.suit.tile,
+    },
+    {
+        name = "4.",
+        layout = awful.layout.suit.tile,
+    },
+    {
+        name = "5.",
+        layout = awful.layout.suit.tile,
+    },
+}
+
 awful.screen.connect_for_each_screen(
     function(s)
         -- Displays and wallpaper.
@@ -338,10 +361,15 @@ awful.screen.connect_for_each_screen(
         -- set_wallpaper(s)
 
         -- Each screen has its own tag table.
-        local names = {"1.", "2.", "3.", "4.", "5."}
-        local l = awful.layout.suit -- Just to save some typing: use an alias.
-        local layouts = {l.max, l.tile, l.tile, l.tile, l.tile}
-        awful.tag(names, s, layouts)
+        for i, tag in pairs(tags) do
+            awful.tag.add(tag.name, {
+                layout = tag.layout,
+                gap_single_client = false,
+                gap = 4,
+                screen = s,
+                selected = i == 1
+            })
+        end
 
         -- Create a promptbox for each screen
         s.mypromptbox = awful.widget.prompt()
