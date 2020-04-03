@@ -228,6 +228,10 @@ local mycal = lain.widget.cal {
     followtag = true,
 }
 
+-- Systray widget
+local mysystray = wibox.widget.systray()
+-- mysystray:set_base_size(20)
+
 -- Create a wibox for each screen and add it
 local taglist_buttons =
     gears.table.join(
@@ -409,7 +413,7 @@ awful.screen.connect_for_each_screen(
             {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                wibox.widget.systray(),
+                mysystray,
                 mykeyboardlayout,
                 volume,
                 mybattery,
