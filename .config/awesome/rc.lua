@@ -923,11 +923,21 @@ awful.rules.rules = {
             type = {"normal", "dialog"}
         },
         properties = {titlebars_enabled = false}
-    }
+    },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    -- Map programs to certain screens and tags.
+    {
+        rule = { class = "Firefox" },
+        properties = { screen = 1, tag = tags[1].name }
+    },
+    {
+        rule = { class = "Mailspring" },
+        properties = { screen = 1, tag = tags[2].name }
+    },
+    {
+        rule = { class = "Slack" },
+        properties = { screen = 1, tag = tags[3].name }
+    },
 }
 -- }}}
 
