@@ -24,6 +24,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Other libraries.
+local cyclefocus = require('cyclefocus')
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -724,7 +727,17 @@ clientkeys =
             c:raise()
         end,
         {description = "(un)maximize horizontally", group = "client"}
-    )
+    ),
+    -- Alt-Tab: cycle through clients on the same screen.
+    -- This must be a clientkeys mapping to have source_c available in the callback.
+    cyclefocus.key({ "Mod1", }, "Tab", {
+        -- cycle_filters as a function callback:
+        -- cycle_filters = { function (c, source_c) return c.screen == source_c.screen end },
+
+        -- cycle_filters from the default filters:
+        cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
+        keys = {'Tab', 'ISO_Left_Tab'}  -- default, could be left out
+    })
 )
 
 -- Bind all key numbers to tags.
