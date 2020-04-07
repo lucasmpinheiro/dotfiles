@@ -13,6 +13,7 @@ local wibox = require("wibox")
 local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 -- Notification library
 local naughty = require("naughty")
 -- Display management library.
@@ -408,6 +409,7 @@ awful.screen.connect_for_each_screen(
                 )
             )
         )
+
         -- Create a taglist widget
         s.mytaglist =
             awful.widget.taglist {
@@ -421,11 +423,42 @@ awful.screen.connect_for_each_screen(
             awful.widget.tasklist {
             screen = s,
             filter = awful.widget.tasklist.filter.currenttags,
-            buttons = tasklist_buttons
+            buttons = tasklist_buttons,
+            layout = {
+                spacing = dpi(10),
+                layout = wibox.layout.flex.horizontal,
+            },
+            widget_template = {
+                id = 'background_role',
+                widget = wibox.container.background,
+                {
+                    widget = wibox.container.margin,
+                    margins = dpi(5),
+                    {
+                        layout = wibox.layout.fixed.horizontal,
+                        {
+                            widget = wibox.container.margin,
+                            right = dpi(5),
+                            {
+                                id = 'icon_role',
+                                widget = wibox.widget.imagebox
+                            }
+                        },
+                        {
+                            widget = wibox.widget.textbox,
+                            id = 'text_role'
+                        }
+                    }
+                }
+            }
         }
 
         -- Create the wibox
-        s.mywibox = awful.wibar({position = "top", screen = s})
+        s.mywibox = awful.wibar({
+            position = "top",
+            screen = s,
+            height = dpi(32),
+        })
 
         -- Add widgets to the wibox
         s.mywibox:setup {
