@@ -15,8 +15,8 @@ local theme = {}
 theme.font = "Ubuntu Nerd Font 12"
 
 -- {{{ Colors
-theme.fg_normal = "#DCDCCC"
-theme.fg_focus = "#F0DFAF"
+theme.fg_normal = "#cccccc"
+theme.fg_focus = "#eeeeee"
 theme.fg_urgent = "#CC9393"
 theme.bg_normal = "#3F3F3F"
 theme.bg_focus = "#1E2320"
