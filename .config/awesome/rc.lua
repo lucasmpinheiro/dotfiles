@@ -196,6 +196,8 @@ local volume = lain.widget.pulse {
             volicon = " "
         end
 
+        vlevel = vlevel or "NA"
+
         widget:set_markup(" " .. volicon .. vlevel .. "% ")
     end
 }
