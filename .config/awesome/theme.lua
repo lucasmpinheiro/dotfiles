@@ -34,8 +34,40 @@ theme.border_marked = "#CC9393"
 -- }}}
 
 -- {{{ Titlebars
-theme.titlebar_bg_focus = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
+-- theme.titlebar_bg_focus = "#3F3F3F"
+-- theme.titlebar_bg_normal = "#3F3F3F"
+-- }}}
+
+-- {{{ Taglist
+theme.taglist_bg_focus =
+  {
+    type = "linear",
+    from = { 0, 0 },
+    to = { 0, dpi(32) },
+    stops = {
+      { 0, theme.bg_normal },
+      { 0.92, theme.bg_normal },
+      { 0.92, theme.fg_normal },
+      { 1, theme.fg_normal },
+    },
+  }
+-- }}}
+
+-- {{{ Tasklist
+theme.tasklist_bg_focus =
+  {
+    type = "linear",
+    from = { 0, 0 },
+    to = { 0, dpi(32) },
+    stops = {
+      { 0, theme.bg_normal },
+      { 0.92, theme.bg_normal },
+      { 0.92, theme.fg_normal },
+      { 1, theme.fg_normal },
+    },
+  }
+theme.tasklist_fg_normal = "#aaaaaa"
+theme.tasklist_fg_focus = "#dddddd"
 -- }}}
 
 -- There are other variable sets
