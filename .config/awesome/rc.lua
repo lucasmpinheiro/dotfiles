@@ -1076,8 +1076,8 @@ client.connect_signal(
 autorun = true
 autorunApps =
 {
-    -- "compton",
-    -- "nitrogen --restore",
+    "picom -b",
+    "nitrogen --restore",
     "eval $(ssh-agent)",
     "nm-applet",
     "xfce4-clipman",
