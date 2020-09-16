@@ -1113,23 +1113,4 @@ client.connect_signal(
 -- }}}
 
 -- Autorun programs.
--- awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-
-autorun = true
-autorunApps =
-{
-    "picom -b",
-    "nitrogen --restore",
-    "eval $(ssh-agent)",
-    "nm-applet",
-    "xfce4-clipman",
-    "blueberry-tray",
-    "slack",
-    "mailspring",
-}
-
-if autorun then
-    for app = 1, #autorunApps do
-        awful.spawn.once(autorunApps[app])
-    end
-end
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
