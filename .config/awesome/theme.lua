@@ -19,7 +19,7 @@ theme.fg_normal = "#cccccc"
 theme.fg_focus = "#eeeeee"
 theme.fg_urgent = "#CC9393"
 theme.bg_normal = "#3F3F3F"
-theme.bg_focus = "#1E2320"
+theme.bg_focus = "#4d4d4d"
 theme.bg_urgent = "#3F3F3F"
 theme.bg_systray = theme.bg_normal
 -- }}}
@@ -33,6 +33,10 @@ theme.border_focus = "#6F6F6F"
 theme.border_marked = "#CC9393"
 -- }}}
 
+-- {{{ Spacing
+theme.systray_icon_spacing = dpi(1)
+-- }}}
+
 -- {{{ Titlebars
 -- theme.titlebar_bg_focus = "#3F3F3F"
 -- theme.titlebar_bg_normal = "#3F3F3F"
@@ -43,10 +47,10 @@ theme.taglist_bg_focus =
   {
     type = "linear",
     from = { 0, 0 },
-    to = { 0, dpi(32) },
+    to = { 0, dpi(36) },
     stops = {
-      { 0, theme.bg_normal },
-      { 0.92, theme.bg_normal },
+      { 0, theme.bg_focus },
+      { 0.92, theme.bg_focus },
       { 0.92, theme.fg_normal },
       { 1, theme.fg_normal },
     },
@@ -58,10 +62,10 @@ theme.tasklist_bg_focus =
   {
     type = "linear",
     from = { 0, 0 },
-    to = { 0, dpi(32) },
+    to = { 0, dpi(36) },
     stops = {
-      { 0, theme.bg_normal },
-      { 0.92, theme.bg_normal },
+      { 0, theme.bg_focus },
+      { 0.92, theme.bg_focus },
       { 0.92, theme.fg_normal },
       { 1, theme.fg_normal },
     },
@@ -100,7 +104,7 @@ theme.mouse_finder_color = "#CC9393"
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = dpi(20)
+theme.menu_height = dpi(32)
 theme.menu_width = dpi(200)
 -- }}}
 
