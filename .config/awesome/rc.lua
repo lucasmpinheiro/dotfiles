@@ -85,6 +85,9 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+-- Default screenshot folder and filename.
+local screenshotFileTemplate = "$HOME/Pictures/Screenshot-$(date +%F-%T).png"
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.floating,
@@ -568,6 +571,45 @@ globalkeys =
         end,
         {description = "focus the previous screen", group = "screen"}
     ),
+    awful.key(
+        {},
+        "Print",
+        function()
+            awful.spawn.with_shell("maim " .. screenshotFileTemplate)
+            naughty.notify({
+                preset = naughty.config.presets.normal,
+                title = "Took a screenshot.",
+                text = ""
+            })
+        end,
+        {description = "take a screenshot"}
+    ),
+    awful.key(
+        {"Control"},
+        "Print",
+        function()
+            awful.spawn.with_shell("maim -i $(xdotool getactivewindow) " .. screenshotFileTemplate)
+            naughty.notify({
+                preset = naughty.config.presets.normal,
+                title = "Took a screenshot.",
+                text = ""
+            })
+        end,
+        {description = "take a screenshot"}
+    ),
+    awful.key(
+        {"Shift"},
+        "Print",
+        function()
+            awful.spawn.with_shell("maim -s " .. screenshotFileTemplate)
+            naughty.notify({
+                preset = naughty.config.presets.normal,
+                title = "Took a screenshot.",
+                text = ""
+            })
+        end,
+        {description = "take a screenshot"}
+    ),
     awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
     awful.key(
         {modkey},
@@ -580,7 +622,7 @@ globalkeys =
         end,
         {description = "go back", group = "client"}
     ),
-    -- Standard program
+    -- Standard programs
     awful.key(
         {modkey},
         "Return",
