@@ -1,0 +1,16 @@
+[username]
+# show_always = true
+
+[hostname]
+ssh_only = false
+prefix = "@"
+
+[time]
+disabled = false
+
+[aws]
+disabled = true
+
+[kubernetes]
+disabled = false
+
