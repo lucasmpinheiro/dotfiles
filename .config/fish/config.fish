@@ -25,6 +25,9 @@ nvm --version > /dev/null
 # Add rust, cargo and rustup to the path.
 set PATH $PATH:$HOME/.cargo/bin
 
+# Add kubectl krew to the path.
+set -gx PATH $PATH $HOME/.krew/bin
+
 set QT_QPA_PLATFORMTHEME qt5ct
 
 # Setup SDKMan.
@@ -38,3 +41,7 @@ set QT_QPA_PLATFORMTHEME qt5ct
 
 starship init fish | source
 
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.fish ]; and . ~/.config/tabtab/__tabtab.fish; or true
