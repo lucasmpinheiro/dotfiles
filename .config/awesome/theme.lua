@@ -12,29 +12,30 @@ local theme = {}
 -- }}}
 
 -- {{{ Styles
-theme.font = "Ubuntu Nerd Font 12"
+theme.font = "FiraMono Nerd Font 11"
+-- theme.font_mono = "UbuntuMono Nerd Font 12"
 
 -- {{{ Colors
-theme.fg_normal = "#cccccc"
-theme.fg_focus = "#eeeeee"
-theme.fg_urgent = "#CC9393"
-theme.bg_normal = "#3F3F3F"
-theme.bg_focus = "#4d4d4d"
-theme.bg_urgent = "#3F3F3F"
-theme.bg_systray = theme.bg_normal
+theme.fg_normal = "#eceff4"
+theme.fg_focus = "#e5e9f0"
+theme.fg_urgent = "#eceff4"
+theme.bg_normal = "#2e3440"
+theme.bg_focus = "#434c5e"
+theme.bg_urgent = "#d08770"
+theme.bg_systray = theme.bg_focus
 -- }}}
 
 -- {{{ Borders and gaps
 theme.useless_gap = dpi(5)
 theme.gap_single_client = false
 theme.border_width = dpi(2)
-theme.border_normal = "#3F3F3F"
-theme.border_focus = "#6F6F6F"
+theme.border_normal = "#2e3440"
+theme.border_focus = "#4c566a"
 theme.border_marked = "#CC9393"
 -- }}}
 
 -- {{{ Spacing
-theme.systray_icon_spacing = dpi(1)
+theme.systray_icon_spacing = dpi(5)
 -- }}}
 
 -- {{{ Titlebars
