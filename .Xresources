@@ -40,10 +40,10 @@
 !! URxvt Appearance
 URxvt.background: [93]#141c21
 *.font: Hack Nerd Font Mono:style=Regular:pixelsize=14:antialias=true:hinting=true
-URxvt.font: xft:Hack Nerd Font Mono:style=Regular:pixelsize=16:antialias=true:hinting=true
-URxvt.boldFont: xft:Hack Nerd Font Mono:style=Bold:pixelsize=16:antialias=true:hinting=true
-URxvt.italicFont: xft:Hack Nerd Font Mono:style=Italic:pixelsize=16:antialias=true:hinting=true
-URxvt.boldItalicfont: xft:Hack Nerd Font Mono:style=Bold Italic:pixelsize=16:antialias=true:hinting=true
+URxvt.font: xft:FiraMono Nerd Font:style=Regular:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:FiraMono Nerd Font:style=Bold:pixelsize=16:antialias=true:hinting=true
+URxvt.italicFont: xft:FiraMono Nerd Font:style=Italic:pixelsize=16:antialias=true:hinting=true
+URxvt.boldItalicfont: xft:FiraMono Nerd Font:style=Bold Italic:pixelsize=16:antialias=true:hinting=true
 URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
@@ -73,4 +73,3 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.urlLauncher: firefox
 URxvt.underlineURLs: true
 URxvt.urlButton: 1
-
