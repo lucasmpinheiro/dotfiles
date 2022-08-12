@@ -28,50 +28,16 @@ require("awful.hotkeys_popup.keys")
 -- Other libraries.
 local cyclefocus = require('cyclefocus')
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify(
-        {
-            preset = naughty.config.presets.critical,
-            title = "Oops, there were errors during startup!",
-            text = awesome.startup_errors
-        }
-    )
-end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal(
-        "debug::error",
-        function(err)
-            -- Make sure we don't go into an endless error loop
-            if in_error then
-                return
-            end
-            in_error = true
-
-            naughty.notify(
-                {
-                    preset = naughty.config.presets.critical,
-                    title = "Oops, an error happened!",
-                    text = tostring(err)
-                }
-            )
-            in_error = false
-        end
-    )
-end
--- }}}
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
+local theme = beautiful.get()
+
+-- Load modules.
+require("module.notifications")
 
 -- Setup default terminal, shell and editor.
-terminal = "st"
+terminal = "kitty"
 
 awful.util.shell = "bash"
 
@@ -99,8 +65,8 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw
     -- awful.layout.suit.corner.ne,
@@ -109,7 +75,7 @@ awful.layout.layouts = {
 }
 
 lockscreen = function()
-    awful.util.spawn("dm-tool lock")
+    awful.util.spawn("slock")
 end
 
 -- }}}
@@ -232,11 +198,16 @@ local mycal = lain.widget.cal {
     attach_to = { mytextclock },
     week_start = 1,
     followtag = true,
+    notification_preset = {
+        font = theme.font,
+        fg = theme.fg_normal,
+        bg = theme.bg_normal,
+    },
 }
 
 -- Systray widget
 local mysystray = wibox.widget.systray()
--- mysystray:set_base_size(20)
+mysystray:set_base_size(dpi(24))
 
 -- Create a wibox for each screen and add it
 local taglist_buttons =
@@ -336,23 +307,23 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 local tags = {
     {
-        name = "1.",
+        name = "1",
         layout = awful.layout.suit.max,
     },
     {
-        name = "2.",
+        name = "2",
         layout = awful.layout.suit.tile,
     },
     {
-        name = "3.",
+        name = "3",
         layout = awful.layout.suit.tile,
     },
     {
-        name = "4.",
+        name = "4",
         layout = awful.layout.suit.tile,
     },
     {
-        name = "5.",
+        name = "5",
         layout = awful.layout.suit.tile,
     },
 }
@@ -420,7 +391,22 @@ awful.screen.connect_for_each_screen(
             awful.widget.taglist {
             screen = s,
             filter = awful.widget.taglist.filter.all,
-            buttons = taglist_buttons
+            buttons = taglist_buttons,
+            widget_template = {
+                id = 'background_role',
+                widget = wibox.container.background,
+                {
+                    widget = wibox.container.margin,
+                    margins = dpi(8),
+                    {
+                        id = 'text_role',
+                        widget = wibox.widget.textbox
+                    }
+                }
+            },
+            -- create_callback = function(self, c3, index, objects)
+            --     self:get_children_by_id('text_role')[1].markup =
+            -- end,
         }
 
         -- Create a tasklist widget
@@ -438,7 +424,7 @@ awful.screen.connect_for_each_screen(
                 widget = wibox.container.background,
                 {
                     widget = wibox.container.margin,
-                    margins = dpi(5),
+                    margins = dpi(8),
                     {
                         layout = wibox.layout.fixed.horizontal,
                         {
@@ -462,7 +448,7 @@ awful.screen.connect_for_each_screen(
         s.mywibox = awful.wibar({
             position = "top",
             screen = s,
-            height = dpi(32),
+            height = dpi(36),
         })
 
         -- Add widgets to the wibox
@@ -479,7 +465,7 @@ awful.screen.connect_for_each_screen(
             {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                mysystray,
+                wibox.container.margin(mysystray, dpi(15), dpi(15), dpi(5), dpi(5)),
                 mykeyboardlayout,
                 volume,
                 mybattery,
@@ -631,6 +617,15 @@ globalkeys =
         end,
         {description = "open a terminal", group = "launcher"}
     ),
+    awful.key(
+        {modkey},
+        "e",
+        function()
+            awful.spawn.with_shell("code")
+        end,
+        {description = "open code editor (Code OSS)", group = "launcher"}
+    ),
+    -- Awesome commands
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
     awful.key({"Mod1", "Control"}, "l", lockscreen, {description = "lock the screen", group = "awesome"}),
@@ -715,7 +710,7 @@ globalkeys =
         {modkey},
         "r",
         function()
-            awful.spawn("rofi -modi drun,window,run,ssh -show drun")
+            awful.spawn.with_shell("rofi -modi drun,window,run,ssh -show drun")
         end,
         {description = "run application (rofi)", group = "launcher"}
     ),
@@ -740,15 +735,15 @@ globalkeys =
             menubar.show()
         end,
         {description = "show the menubar", group = "launcher"}
-    ),
-    awful.key(
-        {modkey, "Shift"},
-        "d",
-        function()
-            xrandr.xrandr()
-        end,
-        {description = "swap display arrangement", group = "awesome"}
     )
+    -- awful.key(
+    --     {modkey, "Shift"},
+    --     "d",
+    --     function()
+    --         xrandr.xrandr()
+    --     end,
+    --     {description = "swap display arrangement", group = "awesome"}
+    -- )
 )
 
 clientkeys =
@@ -1008,12 +1003,12 @@ awful.rules.rules = {
         properties = { screen = 1, tag = tags[1].name }
     },
     {
-        rule = { class = "Mailspring" },
-        properties = { screen = 1, tag = tags[2].name }
-    },
-    {
         rule = { class = "Slack" },
         properties = { screen = 1, tag = tags[3].name }
+    },
+    {
+        rule = { class = "Zoom" },
+        properties = { screen = 1, tag = tags[4].name }
     },
 }
 -- }}}
