@@ -137,6 +137,9 @@ export SDKMAN_DIR="/home/lucasmp/.sdkman"
 #    . /usr/share/powerline/bindings/bash/powerline.sh
 #fi
 
+# Setup keychain.
+#eval $(keychain --eval --quiet id_rsa)
+
 # Run neofetch on terminal launch.
 #neofetch
 
