@@ -4,10 +4,10 @@
 
 # terminal emulator
 super + Return
-	st
+	kitty
 
 # program launcher
-super + @space
+super + R
 	rofi -modi drun,window,run,ssh -show drun
 
 # make sxhkd reload its configuration files:
@@ -16,7 +16,12 @@ super + Escape
 
 # lock screen
 ctrl + alt + l
-    light-locker-command -l
+  dm-tool lock
+
+# Screenshot
+{ctrl + ,shift + ,_} @Print
+	maim {-i $(xdotool getactivewindow),-s,_}  "$HOME/Pictures/Screenshot-$(date +%F-%T).png" && \
+	notify-send -a maim "Took a screenshot."
 
 #
 # bspwm hotkeys
@@ -55,7 +60,7 @@ super + R
 #
 
 # set the window state
-super + {t,shift + t,s,f}
+super + {t,shift + t,d,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
@@ -79,7 +84,7 @@ alt + {_,shift + } Tab
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-super + {Left,Right}
+super + {a,s}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
