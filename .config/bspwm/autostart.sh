@@ -10,14 +10,14 @@ $HOME/.config/polybar/launch.sh
 
 eval $(ssh-agent) &
 lxsession &
-compton &
+compton -b &
 setxkbmap -layout br,us &
-light-locker --lock-on-suspend &
+# light-locker --lock-on-suspend &
+# redshift-gtk &
+# wicd-client --tray &
+# run pamac-tray &
+# run xfce4-clipman &
+slack &
+#thunderbird &
 nitrogen --restore &
-redshift-gtk &
-run nm-applet &
-run pamac-tray &
-run xfce4-clipman &
-run com.slack.Slack &
-run thunderbird &
 
