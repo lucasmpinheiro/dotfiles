@@ -39,13 +39,9 @@ require("module.notifications")
 -- Load widgets.
 local battery_widget = require("widget.battery")
 
--- Setup default terminal, shell and editor.
-terminal = "kitty"
-
+-- Load apps config.
+local apps = require("configuration.apps")
 awful.util.shell = "bash"
-
-editor = os.getenv("EDITOR") or "vim"
-editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -78,7 +74,7 @@ awful.layout.layouts = {
 }
 
 lockscreen = function()
-    awful.util.spawn("slock")
+    awful.util.spawn(apps.default.lock)
 end
 
 -- }}}
@@ -89,8 +85,8 @@ myawesomemenu = {
     {"Hotkeys", function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end},
-    {"Manual", terminal .. " -e man awesome"},
-    {"Edit config", editor_cmd .. " " .. awesome.conffile},
+    {"Manual", apps.default.terminal .. " -e man awesome"},
+    {"Edit config", apps.default.terminal .. " -e " .. apps.default.editor .. " " .. awesome.conffile},
     {"Reload", awesome.restart},
     {"Logout", function()
             awesome.quit()
@@ -106,7 +102,7 @@ mymainmenu =
             {"Lock", lockscreen}
         },
         after = {
-            {"Open terminal", terminal}
+            {"Open terminal", apps.default.terminal}
         }
     }
 )
@@ -118,10 +114,6 @@ mylauncher =
         menu = mymainmenu
     }
 )
-
--- Menubar configuration
--- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -588,7 +580,7 @@ globalkeys =
         {modkey},
         "Return",
         function()
-            awful.spawn(terminal)
+            awful.spawn(apps.default.terminal)
         end,
         {description = "open a terminal", group = "launcher"}
     ),
@@ -596,9 +588,9 @@ globalkeys =
         {modkey},
         "e",
         function()
-            awful.spawn.with_shell("code")
+            awful.spawn.with_shell(apps.default.editor)
         end,
-        {description = "open code editor (Code OSS)", group = "launcher"}
+        {description = "open code editor", group = "launcher"}
     ),
     -- Awesome commands
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
@@ -685,7 +677,7 @@ globalkeys =
         {modkey},
         "r",
         function()
-            awful.spawn.with_shell("rofi -modi drun,window,run,ssh -show drun")
+            awful.spawn.with_shell(apps.default.run_app)
         end,
         {description = "run application (rofi)", group = "launcher"}
     ),
@@ -701,16 +693,16 @@ globalkeys =
             }
         end,
         {description = "lua execute prompt", group = "awesome"}
-    ),
-    -- Menubar
-    awful.key(
-        {modkey},
-        "p",
-        function()
-            menubar.show()
-        end,
-        {description = "show the menubar", group = "launcher"}
     )
+    -- Menubar
+    -- awful.key(
+    --     {modkey},
+    --     "p",
+    --     function()
+    --         menubar.show()
+    --     end,
+    --     {description = "show the menubar", group = "launcher"}
+    -- )
     -- awful.key(
     --     {modkey, "Shift"},
     --     "d",
