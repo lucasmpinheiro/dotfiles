@@ -36,6 +36,9 @@ local theme = beautiful.get()
 -- Load modules.
 require("module.notifications")
 
+-- Load widgets.
+local battery_widget = require("widget.battery")
+
 -- Setup default terminal, shell and editor.
 terminal = "kitty"
 
@@ -122,34 +125,6 @@ mylauncher =
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
-
--- Battery widget.
-local mybattery = lain.widget.bat {
-    timeout = 5,
-    settings = function()
-        if bat_now.status == nil or bat_now.status == "N/A" then
-            widget:set_markup()
-            return
-        end
-
-        local baticon = "  "
-        local blevel = tonumber(bat_now.perc)
-
-        if bat_now.ac_status == 1 then
-            baticon = " "
-        elseif blevel <= 5 then
-            baticon = "  "
-        elseif blevel <= 25 then
-            baticon = "  "
-        elseif blevel <=50 then
-            baticon = "  "
-        elseif blevel <= 75 then
-            baticon = "  "
-        end
-
-        widget:set_markup(" " .. baticon .. bat_now.perc .. "% ")
-    end
-}
 
 -- Volume widget.
 local volume = lain.widget.pulse {
@@ -468,7 +443,7 @@ awful.screen.connect_for_each_screen(
                 wibox.container.margin(mysystray, dpi(15), dpi(15), dpi(5), dpi(5)),
                 mykeyboardlayout,
                 volume,
-                mybattery,
+                battery_widget,
                 mytextclock,
                 s.mylayoutbox
             }
