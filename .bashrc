@@ -143,14 +143,6 @@ export SDKMAN_DIR="/home/lucasmp/.sdkman"
 # Run neofetch on terminal launch.
 #neofetch
 
-# Add some folders to the path.
-export PATH="$PATH:$HOME/development/flutter/bin"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-source ~/.rvm/scripts/rvm
-
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 #export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
