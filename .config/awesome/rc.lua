@@ -77,44 +77,6 @@ lockscreen = function()
     awful.util.spawn(apps.default.lock)
 end
 
--- }}}
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-    {"Hotkeys", function()
-            hotkeys_popup.show_help(nil, awful.screen.focused())
-        end},
-    {"Manual", apps.default.terminal .. " -e man awesome"},
-    {"Edit config", apps.default.terminal .. " -e " .. apps.default.editor .. " " .. awesome.conffile},
-    {"Reload", awesome.restart},
-    {"Logout", function()
-            awesome.quit()
-        end}
-}
-
-mymainmenu =
-    freedesktop.menu.build(
-    {
-        icon_size = beautiful.menu_height or dpi(16),
-        before = {
-            {"Awesome", myawesomemenu, beautiful.awesome_icon},
-            {"Lock", lockscreen}
-        },
-        after = {
-            {"Open terminal", apps.default.terminal}
-        }
-    }
-)
-
-mylauncher =
-    awful.widget.launcher(
-    {
-        image = beautiful.awesome_icon,
-        menu = mymainmenu
-    }
-)
-
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -447,13 +409,6 @@ awful.screen.connect_for_each_screen(
 -- {{{ Mouse bindings
 root.buttons(
     gears.table.join(
-        awful.button(
-            {},
-            3,
-            function()
-                mymainmenu:toggle()
-            end
-        ),
         awful.button({}, 4, awful.tag.viewnext),
         awful.button({}, 5, awful.tag.viewprev)
     )
@@ -483,14 +438,6 @@ globalkeys =
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    --awful.key(
-    --    {modkey},
-    --    "w",
-    --    function()
-    --        mymainmenu:show()
-    --    end,
-    --    {description = "show main menu", group = "awesome"}
-    --),
     -- Layout manipulation
     awful.key(
         {modkey, "Shift"},
