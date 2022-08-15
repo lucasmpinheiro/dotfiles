@@ -143,8 +143,6 @@ export SDKMAN_DIR="/home/lucasmp/.sdkman"
 # Run neofetch on terminal launch.
 #neofetch
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-
 #export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 # kubectl, helm and kops autocompletion
