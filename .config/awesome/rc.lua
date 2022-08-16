@@ -641,7 +641,7 @@ globalkeys =
         end,
         {description = "lua execute prompt", group = "awesome"}
     ),
-    -- Brightness
+    -- Display brightness.
     awful.key(
         {},
         'XF86MonBrightnessUp',
@@ -657,6 +657,31 @@ globalkeys =
             awful.spawn("brightnessctl --device='intel_backlight' set -10%")
         end,
         {description = '-10%', group = 'hotkeys'}
+    ),
+    -- ALSA volume control.
+    awful.key(
+        {},
+        'XF86AudioRaiseVolume',
+        function()
+            awful.spawn('amixer -D pulse sset Master 5%+')
+        end,
+        {description = 'volume up', group = 'hotkeys'}
+    ),
+    awful.key(
+        {},
+        'XF86AudioLowerVolume',
+        function()
+            awful.spawn('amixer -D pulse sset Master 5%-')
+        end,
+        {description = 'volume down', group = 'hotkeys'}
+    ),
+    awful.key(
+        {},
+        'XF86AudioMute',
+        function()
+            awful.spawn('amixer -D pulse set Master 1+ toggle')
+        end,
+        {description = 'toggle mute', group = 'hotkeys'}
     )
     -- Menubar
     -- awful.key(
