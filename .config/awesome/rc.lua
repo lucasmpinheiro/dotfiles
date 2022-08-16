@@ -43,12 +43,9 @@ local battery_widget = require("widget.battery")
 local apps = require("configuration.apps")
 awful.util.shell = "bash"
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+-- Load keys config.
+local modkey = require('configuration.keys.mod').modKey
+local altkey = require('configuration.keys.mod').altKey
 
 -- Default screenshot folder and filename.
 local screenshotFileTemplate = "$HOME/Pictures/Screenshot-$(date +%F-%T).png"
@@ -542,7 +539,7 @@ globalkeys =
     -- Awesome commands
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
-    awful.key({"Mod1", "Control"}, "l", lockscreen, {description = "lock the screen", group = "awesome"}),
+    awful.key({altkey, "Control"}, "l", lockscreen, {description = "lock the screen", group = "awesome"}),
     awful.key(
         {modkey},
         "l",
@@ -790,7 +787,7 @@ clientkeys =
     ),
     -- Alt-Tab: cycle through clients on the same screen.
     -- This must be a clientkeys mapping to have source_c available in the callback.
-    cyclefocus.key({ "Mod1", }, "Tab", {
+    cyclefocus.key({altkey}, "Tab", {
         -- cycle_filters as a function callback:
         -- cycle_filters = { function (c, source_c) return c.screen == source_c.screen end },
 
