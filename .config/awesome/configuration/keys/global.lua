@@ -10,7 +10,7 @@ local altkey = require('configuration.keys.mod').altKey
 local apps = require('configuration.apps')
 
 -- Default screenshot folder and filename.
-local screenshotFileTemplate = "$HOME/Pictures/Screenshot-$(date +%F-%T).png"
+local screenshotFileTemplate = "$HOME/Pictures/Screenshot_$(date +%F_%H-%M-%S).png"
 
 local lockscreen = function()
   awful.util.spawn(apps.default.lock)
