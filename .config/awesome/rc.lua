@@ -36,6 +36,7 @@ require("module.notifications")
 
 -- Load widgets.
 local battery_widget = require("widget.battery")
+local volume_widget = require("widget.volume")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -67,44 +68,6 @@ awful.layout.layouts = {
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
-
--- Volume widget.
-local volume = lain.widget.pulse {
-    settings = function()
-        local volicon = " ";
-        local vlevel = tonumber(volume_now.left)
-
-        if volume_now.muted == "yes" or vlevel == nil then
-            volicon = "ﱝ "
-        elseif vlevel == 0 then
-            volicon = " "
-        elseif vlevel < 50 then
-            volicon = " "
-        end
-
-        vlevel = vlevel or "NA"
-
-        widget:set_markup(" " .. volicon .. vlevel .. "% ")
-    end
-}
-
-volume.widget:buttons(awful.util.table.join(
-    awful.button({}, 1, function() -- left click
-        awful.spawn("pavucontrol")
-    end),
-    awful.button({}, 3, function() -- right click
-        os.execute(string.format("pactl set-sink-volume %s toggle", volume.device))
-        volume.update()
-    end),
-    awful.button({}, 4, function() -- scroll up
-        os.execute(string.format("pactl set-sink-volume %s +5%%", volume.device))
-        volume.update()
-    end),
-    awful.button({}, 5, function() -- scroll down
-        os.execute(string.format("pactl set-sink-volume %s -5%%", volume.device))
-        volume.update()
-    end)
-))
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -384,7 +347,7 @@ awful.screen.connect_for_each_screen(
                 layout = wibox.layout.fixed.horizontal,
                 wibox.container.margin(mysystray, dpi(15), dpi(15), dpi(5), dpi(5)),
                 mykeyboardlayout,
-                volume,
+                volume_widget,
                 battery_widget,
                 mytextclock,
                 s.mylayoutbox
