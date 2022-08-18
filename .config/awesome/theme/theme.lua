@@ -12,7 +12,7 @@ local theme = {}
 -- }}}
 
 -- {{{ Styles
-theme.font = "FiraMono Nerd Font 11"
+theme.font = "FiraCode Nerd Font Mono 10"
 -- theme.font_mono = "UbuntuMono Nerd Font 12"
 
 -- {{{ Colors
@@ -35,7 +35,7 @@ theme.border_marked = "#CC9393"
 -- }}}
 
 -- {{{ Spacing
-theme.systray_icon_spacing = dpi(5)
+theme.systray_icon_spacing = dpi(2)
 -- }}}
 
 -- {{{ Titlebars

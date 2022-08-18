@@ -26,9 +26,8 @@ require("awful.hotkeys_popup.keys")
 -- Other libraries.
 local cyclefocus = require('cyclefocus')
 
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(string.format("%s/.config/awesome/theme.lua", os.getenv("HOME")))
+-- Load theme.
+beautiful.init(require("theme"))
 local theme = beautiful.get()
 
 -- Load modules.
