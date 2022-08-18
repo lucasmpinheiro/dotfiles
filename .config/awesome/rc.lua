@@ -37,6 +37,7 @@ require("module.notifications")
 -- Load widgets.
 local battery_widget = require("widget.battery")
 local volume_widget = require("widget.volume")
+local keyboardlayout_widget = require("widget.keyboardlayout")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -65,9 +66,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -346,7 +344,7 @@ awful.screen.connect_for_each_screen(
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 wibox.container.margin(mysystray, dpi(15), dpi(15), dpi(5), dpi(5)),
-                mykeyboardlayout,
+                keyboardlayout_widget,
                 volume_widget,
                 battery_widget,
                 mytextclock,
