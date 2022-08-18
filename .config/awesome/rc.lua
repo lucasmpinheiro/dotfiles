@@ -37,6 +37,7 @@ require("module.notifications")
 local battery_widget = require("widget.battery")
 local volume_widget = require("widget.volume")
 local keyboardlayout_widget = require("widget.keyboardlayout")
+local clock_widget = require("widget.clock")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -64,22 +65,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
-}
-
--- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-
--- Attach a calendar notification to the clock widget.
-local mycal = lain.widget.cal {
-    attach_to = { mytextclock },
-    week_start = 1,
-    followtag = true,
-    notification_preset = {
-        font = theme.font,
-        fg = theme.fg_normal,
-        bg = theme.bg_normal,
-    },
 }
 
 -- Systray widget
@@ -346,7 +331,7 @@ awful.screen.connect_for_each_screen(
                 keyboardlayout_widget,
                 volume_widget,
                 battery_widget,
-                mytextclock,
+                clock_widget,
                 s.mylayoutbox
             }
         }
