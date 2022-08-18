@@ -38,6 +38,7 @@ local battery_widget = require("widget.battery")
 local volume_widget = require("widget.volume")
 local keyboardlayout_widget = require("widget.keyboardlayout")
 local clock_widget = require("widget.clock")
+local systray_widget = require("widget.systray")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -66,10 +67,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
-
--- Systray widget
-local mysystray = wibox.widget.systray()
-mysystray:set_base_size(dpi(24))
 
 -- Create a wibox for each screen and add it
 local taglist_buttons =
@@ -327,7 +324,7 @@ awful.screen.connect_for_each_screen(
             {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                wibox.container.margin(mysystray, dpi(15), dpi(15), dpi(5), dpi(5)),
+                wibox.container.margin(systray_widget, dpi(15), dpi(15), dpi(5), dpi(5)),
                 keyboardlayout_widget,
                 volume_widget,
                 battery_widget,
