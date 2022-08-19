@@ -53,6 +53,7 @@ awful.layout.layouts = require('configuration.layouts')
 -- Load other configs.
 local tags = require("configuration.tags")
 local client_keys = require("configuration.client.keys")
+local client_buttons = require("configuration.client.buttons")
 
 awful.screen.connect_for_each_screen(
     function(s)
@@ -125,33 +126,6 @@ root.buttons(
 -- {{{ Key bindings
 local globalkeys = require("configuration.keys.global")
 
-clientbuttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(c)
-            c:emit_signal("request::activate", "mouse_click", {raise = true})
-        end
-    ),
-    awful.button(
-        {modkey},
-        1,
-        function(c)
-            c:emit_signal("request::activate", "mouse_click", {raise = true})
-            awful.mouse.client.move(c)
-        end
-    ),
-    awful.button(
-        {modkey},
-        3,
-        function(c)
-            c:emit_signal("request::activate", "mouse_click", {raise = true})
-            awful.mouse.client.resize(c)
-        end
-    )
-)
-
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -168,7 +142,7 @@ awful.rules.rules = {
             focus = awful.client.focus.filter,
             raise = true,
             keys = client_keys,
-            buttons = clientbuttons,
+            buttons = client_buttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap + awful.placement.no_offscreen
         }
