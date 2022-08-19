@@ -37,20 +37,20 @@ theme.border_marked = "#CC9393"
 -- {{{ Systray
 theme.systray_icon_spacing = dpi(8)
 theme.systray_icon_size = dpi(18)
-theme.systray_margin_vertical = dpi(8)
+theme.systray_margin_vertical = dpi(5)
 theme.systray_margin_horizontal = dpi(18)
 -- }}}
 
 -- Wibar
-theme.wibar_height = dpi(36)
+theme.wibar_height = dpi(30)
 
 -- {{{ Titlebars
 -- theme.titlebar_bg_focus = "#3F3F3F"
 -- theme.titlebar_bg_normal = "#3F3F3F"
 -- }}}
 
--- {{{ Taglist
-theme.taglist_bg_focus =
+-- {{{ Taglist and tasklist
+local wibar_bg_focus =
   {
     type = "linear",
     from = { 0, 0 },
@@ -62,21 +62,9 @@ theme.taglist_bg_focus =
       { 1, theme.fg_normal },
     },
   }
--- }}}
 
--- {{{ Tasklist
-theme.tasklist_bg_focus =
-  {
-    type = "linear",
-    from = { 0, 0 },
-    to = { 0, theme.wibar_height },
-    stops = {
-      { 0, theme.bg_focus },
-      { 0.92, theme.bg_focus },
-      { 0.92, theme.fg_normal },
-      { 1, theme.fg_normal },
-    },
-  }
+theme.taglist_bg_focus = wibar_bg_focus
+theme.tasklist_bg_focus = wibar_bg_focus
 theme.tasklist_fg_normal = "#aaaaaa"
 theme.tasklist_fg_focus = "#dddddd"
 -- }}}
