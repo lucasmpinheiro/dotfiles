@@ -13,7 +13,6 @@ local wibox = require("wibox")
 local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
-local dpi = beautiful.xresources.apply_dpi
 -- Display management library.
 local xrandr = require("xrandr")
 -- local menubar = require("menubar")
@@ -88,7 +87,7 @@ awful.screen.connect_for_each_screen(
         s.mywibox = awful.wibar({
             position = "top",
             screen = s,
-            height = dpi(36),
+            height = theme.wibar_height,
         })
 
         -- Add widgets to the wibox

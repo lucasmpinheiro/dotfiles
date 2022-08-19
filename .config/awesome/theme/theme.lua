@@ -41,6 +41,9 @@ theme.systray_margin_vertical = dpi(8)
 theme.systray_margin_horizontal = dpi(18)
 -- }}}
 
+-- Wibar
+theme.wibar_height = dpi(36)
+
 -- {{{ Titlebars
 -- theme.titlebar_bg_focus = "#3F3F3F"
 -- theme.titlebar_bg_normal = "#3F3F3F"
@@ -51,7 +54,7 @@ theme.taglist_bg_focus =
   {
     type = "linear",
     from = { 0, 0 },
-    to = { 0, dpi(36) },
+    to = { 0, theme.wibar_height },
     stops = {
       { 0, theme.bg_focus },
       { 0.92, theme.bg_focus },
@@ -66,7 +69,7 @@ theme.tasklist_bg_focus =
   {
     type = "linear",
     from = { 0, 0 },
-    to = { 0, dpi(36) },
+    to = { 0, theme.wibar_height },
     stops = {
       { 0, theme.bg_focus },
       { 0.92, theme.bg_focus },
