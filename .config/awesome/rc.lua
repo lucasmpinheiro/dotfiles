@@ -40,6 +40,7 @@ local keyboardlayout_widget = require("widget.keyboardlayout")
 local clock_widget = require("widget.clock")
 local systray_widget = require("widget.systray")
 local create_taglist = require("widget.taglist")
+local create_tasklist = require("widget.tasklist")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -54,42 +55,6 @@ awful.layout.layouts = require('configuration.layouts')
 
 -- Load other configs.
 local tags = require("configuration.tags")
-
-local tasklist_buttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(c)
-            if c == client.focus then
-                c.minimized = true
-            else
-                c:emit_signal("request::activate", "tasklist", {raise = true})
-            end
-        end
-    ),
-    awful.button(
-        {},
-        3,
-        function()
-            awful.menu.client_list({theme = {width = 250}})
-        end
-    ),
-    awful.button(
-        {},
-        4,
-        function()
-            awful.client.focus.byidx(1)
-        end
-    ),
-    awful.button(
-        {},
-        5,
-        function()
-            awful.client.focus.byidx(-1)
-        end
-    )
-)
 
 awful.screen.connect_for_each_screen(
     function(s)
@@ -153,39 +118,7 @@ awful.screen.connect_for_each_screen(
         s.mytaglist = create_taglist(s)
 
         -- Create a tasklist widget
-        s.mytasklist =
-            awful.widget.tasklist {
-            screen = s,
-            filter = awful.widget.tasklist.filter.currenttags,
-            buttons = tasklist_buttons,
-            layout = {
-                spacing = dpi(10),
-                layout = wibox.layout.flex.horizontal,
-            },
-            widget_template = {
-                id = 'background_role',
-                widget = wibox.container.background,
-                {
-                    widget = wibox.container.margin,
-                    margins = dpi(8),
-                    {
-                        layout = wibox.layout.fixed.horizontal,
-                        {
-                            widget = wibox.container.margin,
-                            right = dpi(5),
-                            {
-                                id = 'icon_role',
-                                widget = wibox.widget.imagebox
-                            }
-                        },
-                        {
-                            widget = wibox.widget.textbox,
-                            id = 'text_role'
-                        }
-                    }
-                }
-            }
-        }
+        s.mytasklist = create_tasklist(s)
 
         -- Create the wibox
         s.mywibox = awful.wibar({
