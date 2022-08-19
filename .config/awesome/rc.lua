@@ -51,6 +51,9 @@ local altkey = require('configuration.keys.mod').altKey
 -- Load layouts.
 awful.layout.layouts = require('configuration.layouts')
 
+-- Load other configs.
+local tags = require("configuration.tags")
+
 -- Create a wibox for each screen and add it
 local taglist_buttons =
     gears.table.join(
@@ -146,29 +149,6 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
-
-local tags = {
-    {
-        name = "1",
-        layout = awful.layout.suit.max,
-    },
-    {
-        name = "2",
-        layout = awful.layout.suit.tile,
-    },
-    {
-        name = "3",
-        layout = awful.layout.suit.tile,
-    },
-    {
-        name = "4",
-        layout = awful.layout.suit.tile,
-    },
-    {
-        name = "5",
-        layout = awful.layout.suit.tile,
-    },
-}
 
 awful.screen.connect_for_each_screen(
     function(s)
