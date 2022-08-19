@@ -41,6 +41,7 @@ local clock_widget = require("widget.clock")
 local systray_widget = require("widget.systray")
 local create_taglist = require("widget.taglist")
 local create_tasklist = require("widget.tasklist")
+local create_layout_box = require("widget.layoutbox")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -78,46 +79,9 @@ awful.screen.connect_for_each_screen(
 
         -- Create a promptbox for each screen
         s.mypromptbox = awful.widget.prompt()
-        -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-        -- We need one layoutbox per screen.
-        s.mylayoutbox = awful.widget.layoutbox(s)
-        s.mylayoutbox:buttons(
-            gears.table.join(
-                awful.button(
-                    {},
-                    1,
-                    function()
-                        awful.layout.inc(1)
-                    end
-                ),
-                awful.button(
-                    {},
-                    3,
-                    function()
-                        awful.layout.inc(-1)
-                    end
-                ),
-                awful.button(
-                    {},
-                    4,
-                    function()
-                        awful.layout.inc(1)
-                    end
-                ),
-                awful.button(
-                    {},
-                    5,
-                    function()
-                        awful.layout.inc(-1)
-                    end
-                )
-            )
-        )
 
-        -- Create a taglist widget
+        s.mylayoutbox = create_layout_box(s)
         s.mytaglist = create_taglist(s)
-
-        -- Create a tasklist widget
         s.mytasklist = create_tasklist(s)
 
         -- Create the wibox
