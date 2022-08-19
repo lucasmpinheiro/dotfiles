@@ -105,7 +105,7 @@ awful.screen.connect_for_each_screen(
             {
                 -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                wibox.container.margin(systray_widget, dpi(15), dpi(15), dpi(5), dpi(5)),
+                systray_widget,
                 keyboardlayout_widget,
                 volume_widget,
                 battery_widget,
