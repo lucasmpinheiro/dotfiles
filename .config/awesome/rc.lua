@@ -39,6 +39,7 @@ local volume_widget = require("widget.volume")
 local keyboardlayout_widget = require("widget.keyboardlayout")
 local clock_widget = require("widget.clock")
 local systray_widget = require("widget.systray")
+local create_taglist = require("widget.taglist")
 
 -- Load apps config.
 local apps = require("configuration.apps")
@@ -53,51 +54,6 @@ awful.layout.layouts = require('configuration.layouts')
 
 -- Load other configs.
 local tags = require("configuration.tags")
-
--- Create a wibox for each screen and add it
-local taglist_buttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(t)
-            t:view_only()
-        end
-    ),
-    awful.button(
-        {modkey},
-        1,
-        function(t)
-            if client.focus then
-                client.focus:move_to_tag(t)
-            end
-        end
-    ),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button(
-        {modkey},
-        3,
-        function(t)
-            if client.focus then
-                client.focus:toggle_tag(t)
-            end
-        end
-    ),
-    awful.button(
-        {},
-        4,
-        function(t)
-            awful.tag.viewnext(t.screen)
-        end
-    ),
-    awful.button(
-        {},
-        5,
-        function(t)
-            awful.tag.viewprev(t.screen)
-        end
-    )
-)
 
 local tasklist_buttons =
     gears.table.join(
@@ -209,27 +165,7 @@ awful.screen.connect_for_each_screen(
         )
 
         -- Create a taglist widget
-        s.mytaglist =
-            awful.widget.taglist {
-            screen = s,
-            filter = awful.widget.taglist.filter.all,
-            buttons = taglist_buttons,
-            widget_template = {
-                id = 'background_role',
-                widget = wibox.container.background,
-                {
-                    widget = wibox.container.margin,
-                    margins = dpi(8),
-                    {
-                        id = 'text_role',
-                        widget = wibox.widget.textbox
-                    }
-                }
-            },
-            -- create_callback = function(self, c3, index, objects)
-            --     self:get_children_by_id('text_role')[1].markup =
-            -- end,
-        }
+        s.mytaglist = create_taglist(s)
 
         -- Create a tasklist widget
         s.mytasklist =
