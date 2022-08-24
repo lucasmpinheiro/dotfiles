@@ -140,6 +140,14 @@ local globalkeys =
         end,
         {description = "open code editor", group = "launcher"}
     ),
+    awful.key(
+        {modkey},
+        "b",
+        function()
+            awful.spawn.with_shell(apps.default.browser)
+        end,
+        {description = "open default browser", group = "launcher"}
+    ),
     -- Awesome commands
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
