@@ -35,10 +35,10 @@ theme.border_marked = "#CC9393"
 -- }}}
 
 -- {{{ Systray
-theme.systray_icon_spacing = dpi(8)
-theme.systray_icon_size = dpi(18)
-theme.systray_margin_vertical = dpi(5)
-theme.systray_margin_horizontal = dpi(18)
+theme.systray_icon_spacing = dpi(3)
+theme.systray_icon_size = dpi(20)
+theme.systray_margin_vertical = dpi(4)
+theme.systray_margin_horizontal = dpi(14)
 -- }}}
 
 -- Wibar
