@@ -50,18 +50,17 @@ theme.wibar_height = dpi(30)
 -- }}}
 
 -- {{{ Taglist and tasklist
-local wibar_bg_focus =
-  {
-    type = "linear",
-    from = { 0, 0 },
-    to = { 0, theme.wibar_height },
-    stops = {
-      { 0, theme.bg_focus },
-      { 0.92, theme.bg_focus },
-      { 0.92, theme.fg_normal },
-      { 1, theme.fg_normal },
-    },
-  }
+local wibar_bg_focus = {
+	type = "linear",
+	from = { 0, 0 },
+	to = { 0, theme.wibar_height },
+	stops = {
+		{ 0, theme.bg_focus },
+		{ 0.92, theme.bg_focus },
+		{ 0.92, theme.fg_normal },
+		{ 1, theme.fg_normal },
+	},
+}
 
 theme.taglist_bg_focus = wibar_bg_focus
 theme.tasklist_bg_focus = wibar_bg_focus
