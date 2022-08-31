@@ -1,5 +1,4 @@
 local lain = require("lain")
-local wibox = require("wibox")
 local awful = require("awful")
 
 local icons = require("theme.icons")
@@ -24,7 +23,7 @@ local wrapper = lain.widget.pulse({
 		end
 
 		widget:set_icon(volicon)
-		widget:set_text(("%3d"):format(vlevel) .. "%")
+		widget:set_text(("%-4s"):format(vlevel .. "%"))
 	end,
 	widget = list_item_widget(icons.volume_off, not_available_text),
 })
