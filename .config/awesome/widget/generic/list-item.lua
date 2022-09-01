@@ -6,27 +6,32 @@ local factory = function(icon, text)
 			{
 				{
 					{
-						id = "icon",
-						image = icon,
-						resize = true,
-						widget = wibox.widget.imagebox,
+						{
+							id = "icon",
+							image = icon,
+							resize = true,
+							widget = wibox.widget.imagebox,
+						},
+						height = 14,
+						widget = wibox.container.constraint,
 					},
-					height = 14,
-					widget = wibox.container.constraint,
+					valign = "center",
+					widget = wibox.container.place,
 				},
-				valign = "center",
-				widget = wibox.container.place,
-			},
-			{
 				{
-					id = "txt",
-					text = text,
-					widget = wibox.widget.textbox,
+					{
+						id = "txt",
+						text = text,
+						widget = wibox.widget.textbox,
+					},
+					left = 4,
+					widget = wibox.container.margin,
 				},
-				left = 4,
-				widget = wibox.container.margin,
+				layout = wibox.layout.align.horizontal,
 			},
-			layout = wibox.layout.align.horizontal,
+			left = 4,
+			right = 4,
+			layout = wibox.container.margin,
 		},
 		widget = wibox.container.background,
 		set_icon = function(self, icon)
