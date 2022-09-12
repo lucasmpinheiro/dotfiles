@@ -10,6 +10,7 @@ local not_available_text = "NA"
 
 -- Volume widget.
 local wrapper = lain.widget.pulse({
+	cmd = "pactl list sinks | sed -n -e 's/Sink #/index: /p' -e '/Base Volume/d' -e 's/Volume:/volume:/p' -e 's/Mute:/muted:/p' -e '/device\\.string/p'",
 	settings = function()
 		local vlevel = tonumber(volume_now.left) or not_available_text
 
