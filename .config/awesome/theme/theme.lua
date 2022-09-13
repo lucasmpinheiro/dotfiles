@@ -63,9 +63,13 @@ local wibar_bg_focus = {
 }
 
 theme.taglist_bg_focus = wibar_bg_focus
+theme.taglist_fg_empty = "#aaaaaa"
+theme.taglist_fg_occupied = theme.fg_normal
+theme.taglist_fg_focus = theme.fg_focus
+
 theme.tasklist_bg_focus = wibar_bg_focus
 theme.tasklist_fg_normal = "#aaaaaa"
-theme.tasklist_fg_focus = "#dddddd"
+theme.tasklist_fg_focus = theme.fg_focus
 -- }}}
 
 -- There are other variable sets
@@ -100,13 +104,6 @@ theme.mouse_finder_color = "#CC9393"
 -- menu_[border_color|border_width]
 theme.menu_height = dpi(32)
 theme.menu_width = dpi(200)
--- }}}
-
--- {{{ Icons
--- {{{ Taglist
-theme.taglist_squares_sel = themes_path .. "zenburn/taglist/squarefz.png"
-theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
---theme.taglist_squares_resize = "false"
 -- }}}
 
 -- {{{ Misc
