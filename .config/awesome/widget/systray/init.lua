@@ -5,6 +5,7 @@ local theme = beautiful.get()
 
 local systray_widget = wibox.widget.systray()
 systray_widget:set_base_size(theme.systray_icon_size)
+systray_widget:set_horizontal(false)
 
 local container = wibox.container.margin(
 	systray_widget,

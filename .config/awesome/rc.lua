@@ -83,24 +83,24 @@ awful.screen.connect_for_each_screen(
 
         -- Create the wibox
         s.mywibox = awful.wibar({
-            position = "top",
+            position = "left",
             screen = s,
-            height = theme.wibar_height,
+            width = theme.wibar_width,
         })
 
         -- Add widgets to the wibox
         s.mywibox:setup {
-            layout = wibox.layout.align.horizontal,
+            layout = wibox.layout.align.vertical,
             {
                 -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
+                layout = wibox.layout.fixed.vertical,
                 s.mytaglist,
                 s.mypromptbox
             },
             s.mytasklist, -- Middle widget
             {
                 -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
+                layout = wibox.layout.fixed.vertical,
                 systray_widget,
                 keyboardlayout_widget,
                 volume_widget,

@@ -48,7 +48,7 @@ local create_tasklist = function(s)
 		buttons = tasklist_buttons,
 		layout = {
 			spacing = dpi(10),
-			layout = wibox.layout.flex.horizontal,
+			layout = wibox.layout.flex.vertical,
 		},
 		widget_template = {
 			id = "background_role",
@@ -57,19 +57,19 @@ local create_tasklist = function(s)
 				widget = wibox.container.margin,
 				margins = dpi(8),
 				{
-					layout = wibox.layout.fixed.horizontal,
+					layout = wibox.layout.fixed.vertical,
 					{
 						widget = wibox.container.margin,
-						right = dpi(5),
+						bottom = dpi(5),
 						{
 							id = "icon_role",
 							widget = wibox.widget.imagebox,
 						},
 					},
-					{
-						widget = wibox.widget.textbox,
-						id = "text_role",
-					},
+					--{
+					--	widget = wibox.widget.textbox,
+					--	id = "text_role",
+					--},
 				},
 			},
 		},

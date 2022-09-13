@@ -42,7 +42,7 @@ theme.systray_margin_horizontal = dpi(14)
 -- }}}
 
 -- Wibar
-theme.wibar_height = dpi(30)
+theme.wibar_width = dpi(65)
 
 -- {{{ Titlebars
 -- theme.titlebar_bg_focus = "#3F3F3F"
