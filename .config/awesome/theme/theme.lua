@@ -3,6 +3,8 @@
 --    By Adrian C. (anrxc)   --
 -------------------------------
 
+local gears = require("gears")
+
 local themes_path = require("gears.filesystem").get_themes_dir()
 local dpi = require("beautiful.xresources").apply_dpi
 
@@ -50,20 +52,34 @@ theme.wibar_width = dpi(65)
 -- }}}
 
 -- {{{ Taglist and tasklist
-local wibar_bg_focus = {
+-- theme.taglist_bg_focus = {
+-- 	type = "linear",
+-- 	from = { 0, 0 },
+-- 	to = { 0, theme.wibar_width },
+-- 	stops = {
+-- 		{ 0, theme.bg_focus },
+-- 		{ 0.92, theme.bg_focus },
+-- 		{ 0.92, theme.fg_normal },
+-- 		{ 1, theme.fg_normal },
+-- 	},
+-- }
+theme.taglist_bg_focus = theme.fg_normal
+theme.taglist_bg_occupied = "#777777"
+theme.taglist_spacing = dpi(1)
+theme.taglist_shape = gears.shape.circle
+theme.taglist_shape_border_width = dpi(1)
+
+theme.tasklist_bg_focus = {
 	type = "linear",
 	from = { 0, 0 },
-	to = { 0, theme.wibar_height },
+	to = { theme.wibar_width, 0 },
 	stops = {
-		{ 0, theme.bg_focus },
-		{ 0.92, theme.bg_focus },
-		{ 0.92, theme.fg_normal },
-		{ 1, theme.fg_normal },
+		{ 0, theme.fg_normal },
+		{ 0.06, theme.fg_normal },
+		{ 0.06, theme.bg_focus },
+		{ 1, theme.bg_focus },
 	},
 }
-
-theme.taglist_bg_focus = wibar_bg_focus
-theme.tasklist_bg_focus = wibar_bg_focus
 theme.tasklist_fg_normal = "#aaaaaa"
 theme.tasklist_fg_focus = "#dddddd"
 -- }}}
