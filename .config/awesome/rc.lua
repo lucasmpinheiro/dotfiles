@@ -56,10 +56,6 @@ local client_rules = require("configuration.client.rules")
 
 awful.screen.connect_for_each_screen(
     function(s)
-        -- Displays and wallpaper.
-        awful.spawn.with_shell("autorandr --change")
-        awful.spawn.with_shell("nitrogen --restore")
-
         -- Create a promptbox for each screen
         s.mypromptbox = awful.widget.prompt()
 
