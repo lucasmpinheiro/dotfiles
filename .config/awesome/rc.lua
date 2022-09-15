@@ -51,7 +51,7 @@ local altkey = require('configuration.keys.mod').altKey
 awful.layout.layouts = require('configuration.layouts')
 
 -- Load other configs.
-local tags = require("configuration.tags")
+require("configuration.tags")
 local client_rules = require("configuration.client.rules")
 
 awful.screen.connect_for_each_screen(
@@ -59,20 +59,6 @@ awful.screen.connect_for_each_screen(
         -- Displays and wallpaper.
         awful.spawn.with_shell("autorandr --change")
         awful.spawn.with_shell("nitrogen --restore")
-
-        -- Wallpaper
-        -- set_wallpaper(s)
-
-        -- Each screen has its own tag table.
-        for i, tag in pairs(tags) do
-            awful.tag.add(tag.name, {
-                layout = tag.layout,
-                gap_single_client = false,
-                gap = 4,
-                screen = s,
-                selected = i == 1
-            })
-        end
 
         -- Create a promptbox for each screen
         s.mypromptbox = awful.widget.prompt()
