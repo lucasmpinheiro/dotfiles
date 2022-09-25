@@ -38,9 +38,9 @@ theme.border_marked = "#CC9393"
 -- }}}
 
 -- {{{ Systray
-theme.systray_icon_spacing = dpi(3)
-theme.systray_icon_size = dpi(20)
-theme.systray_margin_vertical = dpi(4)
+theme.systray_icon_spacing = 5
+theme.systray_icon_size = 15
+theme.systray_margin_vertical = dpi(6)
 theme.systray_margin_horizontal = dpi(14)
 -- }}}
 
