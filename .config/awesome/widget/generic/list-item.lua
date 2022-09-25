@@ -1,6 +1,9 @@
 local wibox = require("wibox")
+local theme = require('beautiful')
 
-local factory = function(icon, text)
+local factory = function(icon, text, bg_color)
+	bg_color = bg_color or theme.bg_normal
+
 	return wibox.widget({
 		{
 			{
@@ -33,6 +36,7 @@ local factory = function(icon, text)
 			right = 4,
 			layout = wibox.container.margin,
 		},
+		bg = bg_color,
 		widget = wibox.container.background,
 		set_icon = function(self, icon)
 			self:get_children_by_id("icon")[1]:set_image(icon)
