@@ -16,12 +16,15 @@ theme.font = "FiraCode Nerd Font Mono 10"
 -- theme.font_mono = "UbuntuMono Nerd Font 12"
 
 -- {{{ Colors
-theme.fg_normal = "#eceff4"
-theme.fg_focus = "#e5e9f0"
-theme.fg_urgent = "#eceff4"
-theme.bg_normal = "#2e3440"
-theme.bg_focus = "#434c5e"
-theme.bg_urgent = "#d08770"
+theme.fg_normal = "#dfdfdf"
+theme.fg_focus = "#dfdfdf"
+theme.fg_accent = "#66bb6a"
+theme.fg_inactive = "#888888"
+theme.fg_urgent = theme.fg_focus
+theme.bg_normal = "#212121"
+theme.bg_focus = "#2c2c2c"
+theme.bg_accent = "#3a4e3b"
+theme.bg_urgent = theme.bg_accent
 theme.bg_systray = theme.bg_normal
 -- }}}
 
@@ -29,8 +32,8 @@ theme.bg_systray = theme.bg_normal
 theme.useless_gap = dpi(5)
 theme.gap_single_client = false
 theme.border_width = dpi(2)
-theme.border_normal = "#2e3440"
-theme.border_focus = "#4c566a"
+theme.border_normal = theme.bg_normal
+theme.border_focus = theme.bg_accent
 theme.border_marked = "#CC9393"
 -- }}}
 
@@ -56,19 +59,19 @@ local wibar_bg_focus = {
 	to = { 0, theme.wibar_height },
 	stops = {
 		{ 0, theme.bg_focus },
-		{ 0.92, theme.bg_focus },
-		{ 0.92, theme.fg_normal },
-		{ 1, theme.fg_normal },
+		{ 0.9, theme.bg_focus },
+		{ 0.9, theme.fg_accent },
+		{ 1, theme.fg_accent },
 	},
 }
 
 theme.taglist_bg_focus = wibar_bg_focus
-theme.taglist_fg_empty = "#aaaaaa"
+theme.taglist_fg_empty = theme.fg_inactive
 theme.taglist_fg_occupied = theme.fg_normal
-theme.taglist_fg_focus = theme.fg_focus
+theme.taglist_fg_focus = theme.fg_accent
 
 theme.tasklist_bg_focus = wibar_bg_focus
-theme.tasklist_fg_normal = "#aaaaaa"
+theme.tasklist_fg_normal = theme.fg_inactive
 theme.tasklist_fg_focus = theme.fg_focus
 -- }}}
 
