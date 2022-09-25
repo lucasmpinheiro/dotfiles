@@ -13,6 +13,7 @@ local systray_widget = require("widget.systray")
 local create_taglist = require("widget.taglist")
 local create_tasklist = require("widget.tasklist")
 local create_layout_box = require("widget.layoutbox")
+local power_menu_widget = require("widget.powermenu")
 
 local create_top_panel = function(s)
   -- Create a promptbox for each screen
@@ -48,6 +49,7 @@ local create_top_panel = function(s)
       battery_widget,
       clock_widget,
       s.mylayoutbox,
+      power_menu_widget,
     },
   }
 end
