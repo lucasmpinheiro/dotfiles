@@ -42,6 +42,8 @@ set QT_QPA_PLATFORMTHEME qt5ct
 
 starship init fish | source
 
+# Fix terminal when sshing.
+set TERM xterm
 
 # tabtab source for packages
 # uninstall by removing these lines
