@@ -1,16 +1,39 @@
+format = """
+[┌─](bold green)\
+$time\
+$username$hostname\
+$kubernetes\
+$git_branch$git_metrics$git_state\
+$java$rust$python$go$lua$nodejs$cmake$meson\
+$container
+[└─>](bold green) $directory$character"""
+
 [username]
+format = "[$user]($style)"
+style_user = "bold green"
 # show_always = true
 
 [hostname]
+format = "[@$hostname]($style) "
 ssh_only = false
 # prefix = "@"
 
 [time]
 disabled = false
+format = '[\[$time\]]($style) '
 
 [aws]
 disabled = true
 
 [kubernetes]
 disabled = false
+format = '[$symbol$context( \($namespace\))]($style) '
 
+[git_metrics]
+disabled = false
+
+[fill]
+symbol = " "
+
+[directory]
+fish_style_pwd_dir_length = 1
