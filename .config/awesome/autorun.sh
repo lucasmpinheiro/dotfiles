@@ -7,7 +7,7 @@ function run {
   fi
 }
 
-autorandr -l mobile && autorandr -c
+autorandr -c
 nitrogen --restore
 eval $(ssh-agent)
 run picom -b
