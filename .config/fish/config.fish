@@ -6,7 +6,8 @@ set VISUAL vim
 set EDITOR $VISUAL
 
 # Setup keychain.
-eval (keychain --eval --quiet)
+keychain --quiet
+source ~/.keychain/(hostname)-fish
 
 # Setup JAVA home.
 #set JAVA_HOME $HOME/.sdkman/candidates/java/current
