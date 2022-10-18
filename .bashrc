@@ -120,22 +120,8 @@ fi
 export SDKMAN_DIR="/home/lucasmp/.sdkman"
 [[ -s "/home/lucasmp/.sdkman/bin/sdkman-init.sh" ]] && source "/home/lucasmp/.sdkman/bin/sdkman-init.sh"
 
-### Use powerline-shell.
-##function _update_ps1() {
-##    PS1=$(powerline-shell $?)
-##}
-##
-##if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-##    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-##fi
-
-# Use powerline on shells.
-#if [ -f `which powerline-daemon` ]; then
-#    powerline-daemon -q
-#    POWERLINE_BASH_CONTINUATION=1
-#    POWERLINE_BASH_SELECT=1
-#    . /usr/share/powerline/bindings/bash/powerline.sh
-#fi
+# Setup starship.
+eval "$(starship init bash)"
 
 # Setup keychain.
 #eval $(keychain --eval --quiet id_rsa)
