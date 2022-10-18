@@ -28,7 +28,6 @@ awful.screen.connect_for_each_screen(function(s)
   for i, tag in pairs(tags) do
     awful.tag.add(tag.name, {
       layout = tag.layout,
-      gap_single_client = false,
       gap = 4,
       screen = s,
       selected = i == 1,
