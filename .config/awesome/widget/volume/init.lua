@@ -1,5 +1,6 @@
 local lain = require("lain")
 local awful = require("awful")
+local theme = require("beautiful")
 
 local icons = require("theme.icons")
 local list_item_widget = require("widget.generic.list-item")
@@ -26,7 +27,7 @@ local wrapper = lain.widget.pulse({
 		widget:set_icon(volicon)
 		widget:set_text(("%-4s"):format(vlevel .. "%"))
 	end,
-	widget = list_item_widget(icons.volume_off, not_available_text),
+	widget = list_item_widget(icons.volume_off, not_available_text, theme.bg_focus),
 })
 
 wrapper.widget:buttons(awful.util.table.join(
