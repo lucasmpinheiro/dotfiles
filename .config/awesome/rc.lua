@@ -40,7 +40,8 @@ local altkey = require('configuration.keys.mod').altKey
 -- Load layouts.
 awful.layout.layouts = require('configuration.layouts')
 
--- Load other configs.
+-- Load other modules.
+require("module.exit-screen")
 require("configuration.tags")
 require("layout")
 local client_rules = require("configuration.client.rules")
