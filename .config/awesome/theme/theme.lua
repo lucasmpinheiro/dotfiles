@@ -16,15 +16,15 @@ theme.font = "FiraCode Nerd Font Mono 10"
 -- theme.font_mono = "UbuntuMono Nerd Font 12"
 
 -- {{{ Colors
-theme.fg_normal = "#dfdfdf"
-theme.fg_focus = "#dfdfdf"
-theme.fg_accent = "#66bb6a"
-theme.fg_inactive = "#888888"
+theme.fg_normal = "#cdd6f4"
+theme.fg_focus = "#cdd6f4"
+theme.fg_accent = "#b4befe"
+theme.fg_inactive = "#585b70"
 theme.fg_urgent = theme.fg_focus
-theme.bg_normal = "#212121"
-theme.bg_focus = "#2c2c2c"
-theme.bg_accent = "#3a4e3b"
-theme.bg_urgent = theme.bg_accent
+theme.bg_normal = "#11111b"
+theme.bg_focus = "#313244"
+theme.bg_accent = "#585b70"
+theme.bg_urgent = "#f5e0dc"
 theme.bg_systray = theme.bg_normal
 -- }}}
 
