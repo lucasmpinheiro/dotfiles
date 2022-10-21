@@ -7,7 +7,7 @@ local theme = beautiful.get()
 -- Load widgets.
 local battery_widget = require("widget.battery")
 local volume_widget = require("widget.volume")
-local keyboardlayout_widget = require("widget.keyboardlayout")
+local create_kb_layout_widget = require("widget.keyboardlayout")
 local clock_widget = require("widget.clock")
 local systray_widget = require("widget.systray")
 local create_taglist = require("widget.taglist")
@@ -44,7 +44,7 @@ local create_top_panel = function(s)
       -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       systray_widget,
-      keyboardlayout_widget,
+      create_kb_layout_widget(),
       volume_widget,
       battery_widget,
       clock_widget,
