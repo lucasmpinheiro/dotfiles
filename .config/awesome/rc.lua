@@ -26,6 +26,9 @@ require("awful.hotkeys_popup.keys")
 beautiful.init(require("theme"))
 local theme = beautiful.get()
 
+-- Autorun programs.
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
 -- Load modules.
 require("module.notifications")
 
@@ -158,6 +161,3 @@ client.connect_signal(
     end
 )
 -- }}}
-
--- Autorun programs.
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
