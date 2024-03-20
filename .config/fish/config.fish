@@ -21,7 +21,7 @@ source ~/.keychain/(hostname)-fish
 #rvm default
 
 # Setup NVM to work on fish.
-nvm --version > /dev/null
+# nvm --version > /dev/null
 
 # Add rust, cargo and rustup to the path.
 set PATH $PATH:$HOME/.cargo/bin
