@@ -2,44 +2,20 @@
 
 export WHITE=0xffffffff
 
-# -- Teal Scheme --
-export BAR_COLOR=0xff001f30
-export ITEM_BG_COLOR=0xff003547
-export ACCENT_COLOR=0xff2cf9ed
+# THEME COLORS
+# These should not be used directly. They are to be referenced by the bar colors instead.
+export BASE_COLOR=0xff24273a
+export OVERLAY_COLOR=0xff6e738d
+export TEXT_COLOR=0xffcdd6f4
+export ACCENT_COLOR=0xff8aadf4
 
-# -- Gray Scheme --
-# export BAR_COLOR=0xff101314
-# export ITEM_BG_COLOR=0xff353c3f
-# export ACCENT_COLOR=0xffffffff
-
-# -- Purple Scheme --
-# export BAR_COLOR=0xff140c42
-# export ITEM_BG_COLOR=0xff2b1c84
-# export ACCENT_COLOR=0xffeb46f9
-
-# -- Red Scheme ---
-# export BAR_COLOR=0xff23090e
-# export ITEM_BG_COLOR=0xff591221
-# export ACCENT_COLOR=0xffff2453
-
-# -- Blue Scheme ---
-# export BAR_COLOR=0xff021254
-# export ITEM_BG_COLOR=0xff093aa8
-# export ACCENT_COLOR=0xff15bdf9
-
-# -- Green Scheme --
-# export BAR_COLOR=0xff003315
-# export ITEM_BG_COLOR=0xff008c39
-# export ACCENT_COLOR=0xff1dfca1
-
-
-# -- Orange Scheme --
-# export BAR_COLOR=0xff381c02
-# export ITEM_BG_COLOR=0xff99440a
-# export ACCENT_COLOR=0xfff97716
-
-# -- Yellow Scheme --
-# export BAR_COLOR=0xff2d2b02
-# export ITEM_BG_COLOR=0xff8e7e0a
-# export ACCENT_COLOR=0xfff7fc17
+# BAR COLORS 
+# Variables actually used by bar components.
+export BAR_COLOR=0x00000000
+export PRIMARY_ITEM_BG_COLOR=$ACCENT_COLOR
+export PRIMARY_ITEM_LABEL_COLOR=$BASE_COLOR
+export PRIMARY_ITEM_ICON_COLOR=$BASE_COLOR
+export SECONDARY_ITEM_BG_COLOR=$OVERLAY_COLOR
+export SECONDARY_ITEM_LABEL_COLOR=$BASE_COLOR
+export SECONDARY_ITEM_ICON_COLOR=$TEXT_COLOR
 

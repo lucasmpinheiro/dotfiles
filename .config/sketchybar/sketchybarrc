@@ -35,14 +35,14 @@ default=(
   padding_right=5
   icon.font="$FONT:Bold:14.0"
   label.font="$FONT:Semibold:15.0"
-  icon.color=$WHITE
-  label.color=$WHITE
+  icon.color=$PRIMARY_ITEM_ICON_COLOR
+  label.color=$PRIMARY_ITEM_LABEL_COLOR
   icon.padding_left=8
   icon.padding_right=4
   label.padding_left=4
   label.padding_right=8
-  background.color=$ITEM_BG_COLOR
-  background.corner_radius=5
+  background.color=$PRIMARY_ITEM_BG_COLOR
+  background.corner_radius=0
   background.height=24
 )
 sketchybar --default "${default[@]}"
@@ -65,7 +65,6 @@ source $ITEM_DIR/front_app.sh
 
 source $ITEM_DIR/calendar.sh
 source $ITEM_DIR/battery.sh
-source $ITEM_DIR/volume.sh
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
