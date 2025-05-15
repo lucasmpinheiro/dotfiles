@@ -19,13 +19,3 @@ for sid in $(aerospace list-workspaces --all); do
                       script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
-sketchybar --add item space_separator left \
-           --set space_separator icon="􀆊" \
-                                 icon.padding_left=4 \
-                                 icon.padding_right=4 \
-                                 label.padding_right=0 \
-                                 padding_right=0 \
-                                 label.drawing=off
-#                                 script="$PLUGIN_DIR/space_windows.sh" \
-#           --subscribe space_separator space_windows_change
-
