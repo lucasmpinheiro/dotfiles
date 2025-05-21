@@ -11,6 +11,10 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
+on-focus-changed = [
+    'exec-and-forget sketchybar --trigger aerospace_window_focus_change'
+]
+
 # Start AeroSpace at login
 start-at-login = true
 
